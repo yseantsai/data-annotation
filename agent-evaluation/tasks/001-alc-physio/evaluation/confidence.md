@@ -1,0 +1,1 @@
+The files do not show how many hours reception staff work, so I could not confirm whether extra staffing costs are needed. I also could not confirm whether the two web expense lines are duplicates. The baseline calculations can be checked, but those two questions would need answers from the seller.

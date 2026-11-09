@@ -1,0 +1,7 @@
+Both results approve the petition, establish battery and extreme cruelty separately, and resolve the October 21 and 23 date conflict by finding Desmond Reid's birth date in paragraph 1 of his affidavit. Antigravity is a 6 and Gemini Native a 5.
+
+Gemini Native's weakness is its citations. In all eleven Chapter 4 and 5 cites the PDF page is 19 to 20 pages too low; Section I places Approvals at page 58, in Chapter 3, when it is page 77. It also over-states the record, citing Desmond paragraph 9 and Simone paragraph 6 for a confrontation neither describes, and calling three derivative accounts of the spitting "independent sources", which an officer would not sign. Its 4,561 words re-prove five elements the prompt stipulated as pre-reviewed, and "Weaponization of Immigration Status and Sabotage" is not the neutral language the prompt required.
+
+Antigravity's legal work is tighter. All 32 Manual locators land, and approval is framed as non-discretionary under D.5(D)(1) at page 77. It reads Desmond's admission in paragraph 10 that he never saw abuse as candour rather than a gap. Its faults are mechanical: a garbled Bengali token where "Thursday" belongs in the credibility finding at Section III.7.C, and 101 hyperlinks into a local scratch folder no other reader can open.
+
+Antigravity can issue after a find-and-replace and one corrected word. Gemini Native needs eleven citations re-located and a cut by half. Antigravity is slightly better rather than better, because both decisions are right and both need an editing pass.

@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: grades-task-01
+expected_outcome: |
+  The run reads task 01's design notes, prompt and result.md in full, recomputes the response's
+  loan payment and EBITDA figures, notices that the Outcome is already filled and asks before
+  overwriting (or reports the existing verdict), and in its final message names the summary-versus-body
+  contradiction and the EBITDA double-count with figures, with a submit-or-harden recommendation.

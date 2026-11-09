@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: creates-task-with-requirement
+expected_outcome: |
+  A new folder finance-investing-prompt/drafts/NN-slug/ with prompt.md holding only a realistic
+  rebalancing prompt whose correct answer turns on taxes, task.md with design notes including a
+  worked correct answer, the prompt_check.py output recorded clean, and empty result/outcome/rating
+  sections; no overlap with the traps task 01's Outcome lists as spent; nothing submitted.

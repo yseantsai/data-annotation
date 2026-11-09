@@ -1,0 +1,81 @@
+{
+  "check": "evalcheck",
+  "task": "001-alc-physio",
+  "codes": [
+    "A10",
+    "A20",
+    "A21",
+    "A32",
+    "A33",
+    "A40",
+    "A6",
+    "E05",
+    "E10",
+    "E20",
+    "E30",
+    "E40",
+    "E50",
+    "E60",
+    "E70",
+    "E80"
+  ],
+  "findings": [
+    {
+      "level": "ERROR",
+      "code": "E70",
+      "artifact": "evaluation/ratings.md",
+      "message": "No ratings table. Copy templates/ratings.md; E80 cannot check the preference against scores without it."
+    },
+    {
+      "level": "NOTE",
+      "code": "A6",
+      "artifact": "outputs/antigravity/originals/Investment_Request_Form_ALC_Physio 2.docx",
+      "message": "6 em dashes in 735 words (8/1000). Repeated 'clause - clause' punctuation is the reviewer-flagged density; weigh it under Format & Presentation."
+    }
+  ],
+  "error_count": 1,
+  "facts": {
+    "em_dash_count:evaluation/rationale.md": 0,
+    "em_dash_count:evaluation/confidence.md": 0,
+    "word_count:evaluation/rationale.md": 231,
+    "word_count:evaluation/confidence.md": 51,
+    "prompt_words": 288,
+    "rationale_words": 231,
+    "solo_sentences:antigravity": 2,
+    "solo_sentences:gemini-native": 2,
+    "location_references": 2,
+    "rationale_figures": 6,
+    "traced:£181484.59": [
+      "outputs/gemini-native/markdown/investment-request-form.md",
+      "outputs/gemini-native/originals/Investment Request Form - ALC Physio.docx"
+    ],
+    "traced:£18629.56": [
+      "outputs/gemini-native/markdown/investment-request-form.md",
+      "outputs/gemini-native/originals/Investment Request Form - ALC Physio.docx"
+    ],
+    "traced:£195357.63": [
+      "outputs/antigravity/markdown/investment-request-form.md",
+      "outputs/antigravity/originals/Investment_Request_Form_ALC_Physio 2.docx",
+      "outputs/gemini-native/markdown/investment-request-form.md",
+      "outputs/gemini-native/originals/Investment Request Form - ALC Physio.docx"
+    ],
+    "traced:£200792.57": [
+      "outputs/antigravity/markdown/investment-request-form.md",
+      "outputs/antigravity/originals/Investment_Request_Form_ALC_Physio 2.docx",
+      "outputs/gemini-native/markdown/investment-request-form.md",
+      "outputs/gemini-native/originals/Investment Request Form - ALC Physio.docx"
+    ],
+    "traced:£207565.97": [
+      "outputs/antigravity/markdown/investment-request-form.md",
+      "outputs/antigravity/originals/Investment_Request_Form_ALC_Physio 2.docx",
+      "outputs/gemini-native/markdown/investment-request-form.md",
+      "outputs/gemini-native/originals/Investment Request Form - ALC Physio.docx"
+    ],
+    "traced:£26081.38": [
+      "outputs/gemini-native/markdown/investment-request-form.md",
+      "outputs/gemini-native/originals/Investment Request Form - ALC Physio.docx"
+    ],
+    "confidence_words": 51
+  },
+  "generated": "2026-11-05"
+}

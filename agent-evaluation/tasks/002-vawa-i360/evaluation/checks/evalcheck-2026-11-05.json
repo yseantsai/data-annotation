@@ -1,0 +1,55 @@
+{
+  "check": "evalcheck",
+  "task": "002-vawa-i360",
+  "codes": [
+    "A10",
+    "A20",
+    "A21",
+    "A32",
+    "A33",
+    "A40",
+    "A6",
+    "E05",
+    "E06",
+    "E10",
+    "E20",
+    "E30",
+    "E40",
+    "E50",
+    "E60",
+    "E70",
+    "E80"
+  ],
+  "findings": [
+    {
+      "level": "NOTE",
+      "code": "A20",
+      "artifact": "outputs/antigravity/final-message.md",
+      "message": "no comma before \"and\" where a new clause starts (\"...marriage certificate is valid and neither spouse had an unresolved prior...\"). Comma before and/but/so/or between clauses, never more than two clauses in a sentence, serial comma in lists."
+    },
+    {
+      "level": "NOTE",
+      "code": "A20",
+      "artifact": "outputs/gemini-native/final-message.md",
+      "message": "no comma before \"and\" where a new clause starts (\"...5, the couple has not divorced and the petitioner has not remarried (`Aff...\"). Comma before and/but/so/or between clauses, never more than two clauses in a sentence, serial comma in lists."
+    }
+  ],
+  "error_count": 0,
+  "facts": {
+    "em_dash_count:evaluation/rationale.md": 0,
+    "em_dash_count:evaluation/confidence.md": 0,
+    "word_count:evaluation/rationale.md": 249,
+    "word_count:evaluation/confidence.md": 115,
+    "prompt_words": 523,
+    "rationale_words": 249,
+    "solo_sentences:antigravity": 3,
+    "solo_sentences:gemini-native": 2,
+    "location_references": 9,
+    "rationale_figures": 0,
+    "confidence_words": 115,
+    "overall:antigravity": 6.0,
+    "overall:gemini-native": 5.0,
+    "preference": "Antigravity is slightly better"
+  },
+  "generated": "2026-11-05"
+}

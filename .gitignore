@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Editors and tools
+.vscode/
+.idea/
+*.swp
+*~
+.claude/settings.local.json
+
+# Secrets and local environment
+.env
+.env.*
+
+# Office lock files
+~$*
+
+# Large example datasets kept out of the repository
+atomic-loop/

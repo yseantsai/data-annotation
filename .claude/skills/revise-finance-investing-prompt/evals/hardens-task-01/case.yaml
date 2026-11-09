@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: hardens-task-01
+expected_outcome: |
+  history/prompt-r1.md and history/result-r1.md hold the previous round; prompt.md is rewritten so the
+  difficulty moves to something the Outcome says the model missed (cash the buyer must bring, taxes)
+  and the pre-solved facts (replacement quote, market rent comp) are no longer handed over; the
+  design notes carry a recomputed correct answer; result.md is empty; task.md has a Revisions entry;
+  prompt_check.py ran clean; nothing submitted.
