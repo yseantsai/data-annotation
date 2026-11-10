@@ -1,6 +1,6 @@
 # 01 · Brightwater HVAC acquisition
 
-**Status:** round 2, graded, ready to submit. Fill the form from the five sections below, top to bottom. Everything under "Working notes" is reference only. Estimated handle time: about 2 h 40 m for this round (see Time estimate).
+**Status:** round 2, graded, ready to submit. Fill the form from the sections below, top to bottom. Everything under "Working notes" is reference only. AHT: 2 h 40 m for this round.
 
 ## Prompt
 
@@ -28,6 +28,10 @@ The likely cause is a cost structure built from industry ratios rather than from
 ## Optional comments
 
 Leave blank.
+
+## AHT
+
+**2 h 40 m** (range 2 h 15 m to 3 h 5 m; 4 h 30 m to 5 h 30 m counting round 1) for one person with finance experience doing this round by hand. The step-by-step breakdown is under Time estimate in the working notes.
 
 ## Working notes
 

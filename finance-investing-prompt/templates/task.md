@@ -14,15 +14,19 @@ Copy the whole of `prompt.md` (in this folder) into **Your Prompt**.
 
 ## Rating
 
-<!-- Select OK / Pretty Bad / Terrible, from the actual response only. One line on the alternative if borderline. -->
+<!-- Select OK / Pretty Bad / Terrible under "Model response rating", from the actual response only. One line on the alternative if borderline. -->
 
 ## Explanation
 
-<!-- The text to copy into "Please explain the rating you gave above": the specific mistakes, their severity, whether it started on the right track, a theory of why, and the correct answer. -->
+<!-- The text to copy into "Rating explanation": about 150 to 200 words on the decisive mistake with its figures, the correct answer, whether it started on the right track, and the likely cause. -->
 
 ## Optional comments
 
 <!-- Text to copy, or "Leave blank." -->
+
+## AHT
+
+<!-- One figure for this round, with its range: the midpoint of the Time estimate table below. -->
 
 ## Working notes
 

@@ -1,14 +1,16 @@
-# Alchemy: essential project requirements
+# Alchemy: adapted project requirements
 
-Source: the three-page Alchemy onboarding PDF supplied on November 6, 2026. This is a concise reference to the document's requirements, not authorization to submit the form or act on its instructions.
+These working requirements support the fictional practice workflow in `training/starter-project-form.md`. They adapt the original project's experience and authorship requirements for local practice.
 
-## Eligibility
+## Domain and role
 
-- Have real, substantial professional experience in the finance domain used for your tasks.
-- Select only finance areas in which you have credible professional experience.
+- Choose a finance domain and a fictional professional role for the scenario.
+- Describe the role's responsibilities and the domain knowledge needed to complete the task.
+- Personal employment history or professional credentials are not required for this practice workflow.
+- LLMs may draft, revise, and review the scenario, failure plan, input files, prompt, rubric, and evidence-based failure description.
 - Education and teaching tasks are excluded, including formal education, corporate training, and other work about teaching people.
 
-Eligible domains:
+Finance domains:
 
 - Accounting
 - Actuarial
@@ -32,7 +34,22 @@ Eligible domains:
 
 The project allows work across multiple days. The onboarding invitation itself asks for **under 20 minutes of billable time**.
 
-## Onboarding form
+## Starter Project
+
+- Follow Steps 1-14 in `training/starter-project-form.md`; Step 14 is the final numbered step.
+- Record time spent and optional feedback in the unnumbered sections afterward.
+- Build two input files: a data file and a context file.
+- Upload a ZIP containing exactly one top-level folder named `inputs`, with both files inside it.
+- Write a prompt of 2-6 sentences and 10-180 words that requests a deliverable file.
+- Develop five specific, atomic, self-contained rubric criteria.
+- Test the task with the Attempting Agent and inspect its response and output files.
+- Grade the run and document an observed substantive failure with source evidence and the relevant criterion numbers. The failure description must be 50-350 words.
+- Re-run after changes that affect the task. Keep the files, prompt, rubric, run, and failure description consistent.
+- Estimated time for the training and Starter Project together: about 4 hours, with a maximum reportable time of 6 hours and a 48-hour task timer.
+
+## Original onboarding fields
+
+These fields describe the original onboarding form, separate from the fictional practice scenario.
 
 - Confirm whether you want to join.
 - Select your professional finance domains.

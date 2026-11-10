@@ -89,6 +89,8 @@ the Status line under the title. In `task.md`:
   round by hand, as a table of steps in minutes, with the total and a line on earlier rounds.
   Base the reading and grading rows on the actual response length. Rule D8 sets the target at
   about three hours.
+- **AHT** (the section above Working notes): the one figure to report, the table's midpoint,
+  with its range. Use the same figure in the Status line, so the file never carries two.
 - **Log:** a dated line with the verdict and the recommendation.
 
 Mechanics apply to this prose too: zero em dashes, clean commas, no hedging filler. Run the
