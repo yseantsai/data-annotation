@@ -44,7 +44,7 @@ Normalized EBITDA (SDE less a market manager salary of about $120,000) is roughl
 ## Self-check
 
 ```
-== drafts/01-brightwater-hvac-acquisition/prompt.md (445 words) ==
+== submissions/01-brightwater-hvac-acquisition/prompt.md (445 words) ==
   coded checks clean
 ```
 

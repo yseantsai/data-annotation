@@ -1,6 +1,6 @@
 # NN · Short title
 
-<!-- Copy templates/ to drafts/NN-slug/ (prompt.md, task.md, result.md). The first five sections are the form, in the form's order; fill them last. Work top to bottom from "Working notes" down. The check script runs on prompt.md. -->
+<!-- Copy templates/ to submissions/NN-slug/ (prompt.md, task.md, result.md). The first five sections are the form, in the form's order; fill them last. Work top to bottom from "Working notes" down. The check script runs on prompt.md. -->
 
 **Status:** <!-- drafting / awaiting Generate / graded, ready to submit / revising -->
 

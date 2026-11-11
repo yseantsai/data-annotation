@@ -9,7 +9,7 @@ Copy the whole of `prompt.md` (in this folder) into **Your Prompt**.
 ## Generate response
 
 
-Already done. The response is saved unedited in `result.md` (2,159 words, 2026-11-09). Nothing to paste into the form.
+The response is saved unedited in `result.md` (2,159 words, 2026-11-09). Nothing to paste into the form.
 
 ## Rating
 
@@ -125,7 +125,7 @@ The promotion links to the standard price cut ($219,852), the overtime, and the 
 ## Self-check
 
 ```
-== drafts/02-harrow-q3-margin-variance/prompt.md (273 words) ==
+== submissions/02-harrow-q3-margin-variance/prompt.md (273 words) ==
   coded checks clean
 ```
 

@@ -33,7 +33,9 @@ model answering correctly on the whole sends the prompt back to design.
 python3 tools/task_status.py --list
 ```
 
-Open each earlier task's `task.md` and read its Failure target and Outcome. The Outcome of a
+Read `docs/spent-traps.md`: it lists every trap the model has caught, including those from
+deleted tasks, and the shapes that have made it fail. Then open each task's `task.md` in
+`submissions/` and read its Failure target and Outcome. The Outcome of a
 graded task lists the traps the model handled; those are spent for this prompt family and the
 new task must not rely on them (rule D5 and the uniqueness note in the instructions). A new
 task may share a domain with an old one only when its trap and reasoning path are different.
@@ -59,7 +61,7 @@ quoted lines, never as the conclusion the solver should reach.
 
 ## 4. Write the task folder
 
-Create `drafts/NN-slug/` by copying `templates/`:
+Create `submissions/NN-slug/` by copying `templates/`:
 
 - `prompt.md` holds only the prompt text, exactly as it will be pasted into the form.
 - `task.md` holds the failure target, the design notes with the worked answer, the self-check
@@ -74,7 +76,7 @@ zero em dashes, clean comma mechanics, none of the shapes in `docs/llm-prose-tel
 ## 5. Check, then read aloud
 
 ```
-python3 tools/prompt_check.py drafts/NN-slug/prompt.md
+python3 tools/prompt_check.py submissions/NN-slug/prompt.md
 ```
 
 Fix every ERROR. Read every WARN and either fix it or record why it stands. Walk the MANUAL
@@ -83,7 +85,15 @@ second look every time: any sentence that draws the inference for the model ("so
 not one-time") is removed, and the bare facts stay. Read the prompt aloud once; a sentence
 whose only job is to sound like a person goes.
 
-Add a dated line to the task's Log.
+Add a dated line to the task's Log. Then run the prose check on the whole task file, because
+the failure target, design notes, and log are prose a reviewer reads too:
+
+```
+python3 tools/prompt_check.py --task submissions/NN-slug/task.md
+```
+
+Fix every ERROR and every WARN, or note in the Self-check section why a WARN stands. Do not
+hand over a task file that has not come back clean.
 
 ## 6. Hand over
 

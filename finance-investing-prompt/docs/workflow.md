@@ -1,6 +1,6 @@
 # Workflow: one prompt attempt, start to finish
 
-Each attempt lives in one folder, `drafts/NN-slug/`, copied from `templates/`. The number is
+Each attempt lives in one folder, `submissions/NN-slug/`, copied from `templates/`. The number is
 the next unused one. `prompt.md` holds the prompt alone, exactly as it will be pasted into the
 form, so it can be found and copied without hunting. `result.md` holds the Generate response, pasted unedited. `task.md` holds the design
 notes, the check output, the rating and the explanation, so an attempt can be
@@ -33,7 +33,7 @@ get wrong, and why a competent practitioner would not.
 
 Discard the target if the question is common enough that the model has seen the answer
 pattern thousands of times, if it is answerable by recall, or if it is a minor variation on an
-attempt already in `drafts/` [D1, D5].
+attempt already in `submissions/` [D1, D5].
 
 ## Stage 1: design the scenario
 
@@ -82,7 +82,7 @@ Arbitrary constraints that exist only to trip the model are not [D6].
 ## Stage 3: self-check
 
 ```
-python3 tools/prompt_check.py drafts/NN-slug/prompt.md
+python3 tools/prompt_check.py submissions/NN-slug/prompt.md
 ```
 
 The script checks the whole of `prompt.md`. Fix every ERROR. Read every WARN
@@ -90,6 +90,16 @@ and either fix it or note in the task file why it stands (a real finance term th
 scan dislikes, a legitimate list of three). Then walk the MANUAL rows it prints: those are the
 rules no regex can read, and each one is a reason a prompt gets rejected or fails to produce a
 model failure.
+
+The task file is prose a reviewer reads too. Check it whole, every time it is written or
+changed (on creating the task, after a review, after a revision):
+
+```
+python3 tools/prompt_check.py --task submissions/NN-slug/task.md
+```
+
+It runs the prose checks on every section except the Prompt pointer and the Self-check record,
+skipping tables and code blocks, and reports only the sections with findings.
 
 Read the prompt aloud once. If any sentence exists only to sound like a person, delete it.
 
@@ -106,10 +116,12 @@ outcomes applies:
 | --- | --- | --- |
 | Major issues | Wrong conclusion, wrong method, invented facts, or the trap taken whole | Stage 5 |
 | Flawed in an essential way | Parts right, but a crucial element wrong and the result only marginally useful | Stage 5 |
-| Few or no issues | Conclusions and logic right on the whole, even with minor slips | Back to Stage 1 or Stage 0 |
+| Few or no issues | Conclusions and logic right on the whole, even with minor slips | Delete the task, start a new one at Stage 0 |
 
-A response that is right on the whole is not a submission, however long it took to build. Note
-in the task file what the model handled correctly so the next attempt does not repeat it.
+A response that is right on the whole is not a submission, however long it took to build, and
+a borderline response you would not submit counts the same way. Such a task is not hardened.
+Add what the model handled correctly to `docs/spent-traps.md`, delete the task's folder, and
+start a new task with the next number, so `submissions/` holds only tasks that can be submitted.
 
 ## Stage 5: rate and explain
 
@@ -128,11 +140,13 @@ State what the correct answer is, so that a reader can verify the rating.
 
 Optional comments hold anything else worth saying about the prompt or the response.
 
-Check the explanation the same way as the prompt, then read it aloud:
+Check the whole task file, then read the explanation aloud:
 
 ```
-python3 tools/prompt_check.py --section Explanation drafts/NN-slug/task.md
+python3 tools/prompt_check.py --task submissions/NN-slug/task.md
 ```
+
+`--section Explanation` checks one section alone when only that section changed.
 
 Record the time estimate (AHT) for the round in `task.md`: the minutes per step for one person
 doing it by hand, and the total against the three-hour budget [D8].
@@ -146,8 +160,9 @@ says what changed and why.
 
 ## Revising a task after a round
 
-When Stage 4 sends a task back to design, or the platform returns it, the task keeps its number
-and folder. The closing round's `prompt.md` and `result.md` are copied to `history/prompt-rN.md`
+A response that is not submittable never leads to a revision; Stage 4 deletes that task. A
+revision is for a submitted task the platform returns, or a change the user asks for. The task
+keeps its number and folder. The closing round's `prompt.md` and `result.md` are copied to `history/prompt-rN.md`
 and `history/result-rN.md`, `prompt.md` is rewritten, `result.md` is emptied, the Design notes
 are recomputed for the new facts, the Outcome, Rating and Explanation sections are cleared, and
 a dated entry goes under Revisions in `task.md` saying why, what moved and what was kept. The

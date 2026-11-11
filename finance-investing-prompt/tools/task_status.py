@@ -7,7 +7,7 @@
     python3 tools/task_status.py NN --json   the same as machine-readable JSON
 
 Run from the project folder (finance-investing-prompt/) or anywhere: the project root is the
-parent of this file's folder. A task is drafts/NN-slug/ holding prompt.md, result.md and task.md;
+parent of this file's folder. A task is submissions/NN-slug/ holding prompt.md, result.md and task.md;
 history/ inside the folder keeps earlier rounds (prompt-r1.md, result-r1.md).
 
 Exit status: 0 found; 2 no task with that number or an ambiguous number; 3 bad usage.
@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DRAFTS = ROOT / "drafts"
+SUBMISSIONS = ROOT / "submissions"
 SECTIONS = ["Prompt", "Failure target", "Design notes", "Self-check", "Generate response", "Outcome",
             "Rating", "Explanation", "Optional comments", "Log"]
 
@@ -59,9 +59,9 @@ def log_tail(task_md, n=3):
 
 
 def task_dirs():
-    if not DRAFTS.is_dir():
+    if not SUBMISSIONS.is_dir():
         return []
-    return sorted(p for p in DRAFTS.iterdir() if p.is_dir() and re.match(r"^\d+-", p.name))
+    return sorted(p for p in SUBMISSIONS.iterdir() if p.is_dir() and re.match(r"^\d+-", p.name))
 
 
 def describe(folder):

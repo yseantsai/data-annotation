@@ -8,7 +8,7 @@ Copy the whole of `prompt.md` (in this folder) into **Your Prompt**.
 
 ## Generate response
 
-Already done. The response is saved unedited in `result.md` (2,493 words, 2026-11-09). Nothing to paste into the form.
+The response is saved unedited in `result.md` (2,493 words, 2026-11-09). Nothing to paste into the form.
 
 ## Rating
 
@@ -89,7 +89,7 @@ The model checks the lender's coverage test, sees it pass comfortably, accepts t
 - Broker's closing figure $185,450 (equity $154,000, attorney $24,600, lender fees $6,850).
 - Buyer liquidity $261,000, of which $40,000 is untouchable.
 
-**Trap.** The coverage test passes easily, which invites the conclusion that the deal works. The broker's closing figure omits the lease payment, and nothing in the deal funds working capital. The buyer inherits no receivables and gets no supplier credit, so payroll and parts for the first five to six weeks are paid before customer cash comes in. The default a model reaches for is "coverage passes, you need about $185,000 to $209,000, take the $150,000 as a cushion, you are fine."
+**Trap.** The coverage test passes easily, which invites the conclusion that the deal works. The broker's closing figure omits the lease payment, and nothing in the deal funds working capital. The buyer inherits no receivables and gets no supplier credit, so payroll and parts for the first five to six weeks are paid before customer cash comes in. The default a model reaches for is that coverage passes, the buyer needs about $185,000 to $209,000, and the $150,000 loan is a cushion.
 
 **Correct answer.**
 
@@ -122,7 +122,7 @@ A sound answer takes the $150,000 because coverage stays well above 1.25x with i
 ## Self-check
 
 ```
-== drafts/01-brightwater-hvac-acquisition/prompt.md (368 words) ==
+== submissions/01-brightwater-hvac-acquisition/prompt.md (368 words) ==
   coded checks clean
 ```
 

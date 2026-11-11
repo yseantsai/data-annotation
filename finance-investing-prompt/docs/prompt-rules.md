@@ -20,6 +20,7 @@ information about real people.
 | F4 | The stakes are concrete: a decision, a deadline, an amount at risk, a person waiting. | read |
 | F5 | Every person and company is fictional; no private information about any real person. Public facts about public companies are allowed only when they are public. | read |
 | F6 | No adversarial, unsafe, sensitive, criminal or controversial topics (the lists in `../instructions.md`). | coded WARN on keywords, then read |
+| F7 | Data goes in the way a person types or pastes it: tab-separated rows copied from a spreadsheet, short lines, or figures in sentences. No markdown table syntax, headings or bold; nobody formats a chat message that way. A short hyphen list is fine when a person would type one. | coded: ERROR on a markdown table, WARN on headings and bold |
 
 A frame that passes F1 to F4 does not introduce the requester to a colleague who already knows
 them. Context rides on the things the work touches: "the board pack goes out Thursday", "our
@@ -39,7 +40,7 @@ Finance-flavored pair. The left reads as engineered, the right as lived:
 | D2 | The scenario carries a trap: a fact that changes the answer, a default method that is wrong here, or a convention the model will confuse. | read |
 | D3 | The facts can support the answer the requester does not want, so a model that plays along is gradeably wrong. | read |
 | D4 | A prompt is submitted only when the Generate response is OK, Pretty Bad or Terrible. | procedural |
-| D5 | Not a minor variation of an earlier attempt in `drafts/`. | read against the folder |
+| D5 | Not a minor variation of an earlier attempt in `submissions/`. | read against the folder |
 | D6 | Complexity is the scenario's own; no constraints that exist only to trip the model. | read |
 | D7 | The prompt is long enough to carry its facts and no longer: under 60 words is almost always a softball, over 650 is almost always padding. | coded, WARN |
 | D8 | Size budget: the whole task, from design through the rating and explanation, fits in about three hours of human work. One decisive question beats several stacked ones; a practitioner should be able to answer the prompt in about an hour. Difficulty comes from the trap, never from volume. | read |
@@ -98,7 +99,7 @@ script reads.
 | Id | Rule | Check |
 | --- | --- | --- |
 | R1 | The rating and the explanation describe the actual Generate response pasted in the task file; nothing is inferred or invented. | procedural |
-| R2 | The explanation names the specific mistakes, their severity, whether the model started well, a theory of why it failed, and what the correct answer is. Keep it short: about 150 to 200 words in two or three paragraphs, one decisive mistake with its figures ahead of the minor ones, and the full list of flaws left in the Outcome notes. | read, plus `--section Explanation` |
+| R2 | The explanation names the specific mistakes, their severity, whether the model started well, a theory of why it failed, and what the correct answer is. Keep it short: about 150 to 200 words in two or three paragraphs, one decisive mistake with its figures ahead of the minor ones, and the full list of flaws left in the Outcome notes. | read, plus `--task` on the task file |
 | R3 | Amazing and Pretty Good are never selected; such a response sends the prompt back to design. | procedural |
 
 ## Adding a rule

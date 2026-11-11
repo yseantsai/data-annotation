@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 """prompt_check.py: the coded self-check for a finance prompt, run before Generate.
 
-    python3 tools/prompt_check.py drafts/NN-slug/prompt.md [more files]
-    python3 tools/prompt_check.py --section Explanation drafts/NN-slug/task.md
+    python3 tools/prompt_check.py submissions/NN-slug/prompt.md [more files]
+    python3 tools/prompt_check.py --task submissions/NN-slug/task.md
+    python3 tools/prompt_check.py --section Explanation submissions/NN-slug/task.md
     python3 tools/prompt_check.py --selftest
+
+--task checks every "## " section of a task file as prose, the same way --section does, and
+reports only the sections with findings. It skips the Prompt pointer and the Self-check record,
+and strips template comments, fenced code, and table rows first. Run it every time task.md is
+written or changed: on creating a task, after a review fills it, and after a revision.
 
 --section NAME checks the text under "## NAME" in a task file as prose rather than as a
 prompt: the mechanics (M), prose tells (T), persona (F2) and stacked adjectives (S3) run; the
@@ -22,6 +28,7 @@ Severity:
 Checks, by rule id:
   F2   persona opener                        T1   tautology
   F6   banned-topic keyword                  T2   known slogan phrases
+  F7   markdown table, heading or bold
   D7   length band (60 to 650 words)         T4   not just / not only ... but
   S1   numbered procedure, requirement stack T5   it's not X, it's Y
   S3   stacked quality adjectives            T6   serves as / stands as / boasts
@@ -88,6 +95,14 @@ BANNED_RE = re.compile(
     r"|suicide|self-harm|eating disorder|anorexi\w*|sexual|rape|assault|abuse|shooting|murder"
     r"|cocaine|heroin|fentanyl|launder\w*|ponzi|embezzl\w*|insider trading|tax evasion|bribe\w*)\b",
     re.I)
+
+# F7: formatting a person would not type into a chat box. A finance manager pastes a
+# spreadsheet range as tab-separated rows, or types the figures into sentences; markdown table
+# syntax, headings and bold read as engineered (raised by the user on task 03, 2026-11-10).
+MD_TABLE_RE = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*$", re.M)
+MD_PIPE_ROW_RE = re.compile(r"^\s*\|.*\|\s*$", re.M)
+MD_HEADING_RE = re.compile(r"^#{1,6}\s+\S", re.M)
+MD_BOLD_RE = re.compile(r"\*\*[^*\n]+\*\*|__[^_\n]+__")
 
 # ---------------------------------------------------------------- S: specification
 
@@ -241,7 +256,7 @@ MANUAL_ROWS = [
     ("D1", "not answerable by recall; depends on the scenario's own facts"),
     ("D2", "the trap is in the facts: a conflicting figure, a wrong default, a convention confusion"),
     ("D3", "the facts can support the answer the requester does not want"),
-    ("D5", "not a variation on an attempt already in drafts/"),
+    ("D5", "not a variation on an attempt already in submissions/"),
     ("D6", "complexity is the scenario's own; no constraints that exist only to trip the model"),
     ("D8", "one decisive question; whole task fits about three hours, prompt answerable in about an hour"),
     ("S2", "no pitfall warning and no derived parameter handed over as a given"),
@@ -256,7 +271,7 @@ MANUAL_ROWS = [
 
 # ---------------------------------------------------------------- the run
 
-PROMPT_ONLY = {"F6", "D7", "S1", "S5"}
+PROMPT_ONLY = {"F6", "F7", "D7", "S1", "S5"}
 
 
 def findings(text, prompt=True):
@@ -288,6 +303,16 @@ def findings(text, prompt=True):
         if w not in seen:
             seen.add(w)
             warn("F6", f'"{w}" touches a topic the instructions ban or restrict; confirm it is not the subject')
+
+    # F7 markdown formatting
+    if MD_TABLE_RE.search(text) or len(MD_PIPE_ROW_RE.findall(text)) >= 2:
+        err("F7", "markdown table syntax: a person pastes a spreadsheet range as tab-separated rows or types the figures into sentences")
+    m = MD_HEADING_RE.search(text)
+    if m:
+        warn("F7", f'markdown heading "{clip(m.group(0), 40)}": a request typed into a chat box has no headings')
+    m = MD_BOLD_RE.search(text)
+    if m:
+        warn("F7", f'markdown bold "{clip(m.group(0), 40)}": a person does not bold words in a typed request')
 
     # D7 length
     if n_words < MIN_WORDS:
@@ -344,7 +369,10 @@ def findings(text, prompt=True):
 
     # T1 tautology
     for rx in TAUTOLOGY_RES:
-        m = next((m for m in rx.finditer(text) if not TAUTOLOGY_OK_RE.search(m.group(0))), None)
+        # a number "repeated" is a figure, not a tautology: "year 1 is 1.53x"
+        m = next((m for m in rx.finditer(text)
+                  if not TAUTOLOGY_OK_RE.search(m.group(0))
+                  and not (rx.groups and m.group(1).replace(" ", "").isdigit())), None)
         if m:
             err("T1", f'tautology "{clip(m.group(0), 60)}": state the rule and its consequence instead')
             break
@@ -470,6 +498,46 @@ def extract_prompt(text):
     return body.strip()
 
 
+TASK_SKIP = {"Prompt", "Self-check"}
+
+
+def task_sections(raw):
+    """Yield (name, prose) for each "## " section of a task file, as prose only: template
+    comments, fenced code blocks, and markdown table rows are removed, because they are notes
+    and figures rather than sentences. The Prompt pointer and the Self-check record are skipped."""
+    parts = re.split(r"^## (.+?)\s*$", raw, flags=re.M)
+    for name, body in zip(parts[1::2], parts[2::2]):
+        if name in TASK_SKIP:
+            continue
+        body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
+        body = re.sub(r"^```.*?^```\s*$", "", body, flags=re.S | re.M)
+        body = "\n".join(l for l in body.splitlines() if not l.lstrip().startswith("|"))
+        body = body.strip()
+        if body:
+            yield name, body
+
+
+def run_task(path):
+    raw = Path(path).read_text(encoding="utf-8", errors="ignore")
+    print(f"== {path} [task file, prose sections] ==")
+    rc, total_words, flagged = 0, 0, 0
+    for name, text in task_sections(raw):
+        found = findings(text, prompt=False)
+        total_words += len(words(text))
+        if not found:
+            continue
+        flagged += 1
+        print(f"  -- {name} ({len(words(text))} words)")
+        for level, code, msg in sorted(found, key=lambda f: f[0] != "ERROR"):
+            print(f"     {level:5s} [{code}] {msg}")
+        if any(f[0] == "ERROR" for f in found):
+            rc = 1
+    if not flagged:
+        print(f"  coded checks clean ({total_words} words of prose)")
+    print("  MANUAL: read the Rating and Explanation aloud; every flaw named carries a figure or a quote")
+    return rc
+
+
 def run_file(path, section=None):
     raw = Path(path).read_text(encoding="utf-8", errors="ignore")
     if section:
@@ -502,6 +570,7 @@ def run_file(path, section=None):
 
 SELFTEST = {
     "F2": "You are a senior equity analyst with ten years of experience.",
+    "F7": "Here are the flows.\n\n| Date | Amount |\n| --- | --- |\n| 9/30/2021 | 451,860 |",
     "F6": "The client was convicted of insider trading last year and wants a portfolio.",
     "D7": "Value this company please.",
     "S1": "Please do the following.\n1. Build a DCF.\n2. Run the trading comps.\n3. Write the memo.",
@@ -541,6 +610,9 @@ def selftest():
         if code not in got:
             bad += 1
             print(f"  FAIL {code}: fixture did not fire (got {sorted(got) or 'nothing'})")
+    if any(c == "T1" for _, c, _ in findings("At $260,000, year 1 is 1.53x and year 3 is 1.31x.")):
+        bad += 1
+        print("  FAIL T1 fires on a figure (year 1 is 1.53x)")
     clean = findings(CLEAN_SAMPLE)
     if clean:
         bad += 1
@@ -561,6 +633,14 @@ def main(argv):
     if argv[1] == "--selftest":
         return selftest()
     args = argv[1:]
+    if args[0] == "--task":
+        if len(args) < 2:
+            print(__doc__)
+            return 2
+        rc = 0
+        for target in args[1:]:
+            rc |= run_task(target)
+        return rc
     section = None
     if "--section" in args:
         i = args.index("--section")

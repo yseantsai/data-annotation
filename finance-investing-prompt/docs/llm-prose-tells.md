@@ -142,6 +142,15 @@ A long dash setting off an aside in the middle of a sentence ("The model, as exp
 written with dashes instead of the commas). One per paragraph is the fingerprint. The rule
 here is zero, because density is the tell and zero is the only count no reader notices.
 
+### 21. Markdown formatting in a typed request (F7)
+
+A cash-flow schedule written as a markdown table, with pipes and a `| --- |` separator row, or a
+prompt with headings and bold labels. A finance manager copying from Excel pastes tab-separated
+rows; one typing from a statement writes short lines or puts the figures in sentences. The
+formatting tells the reader the prompt was composed for a model. Fix: paste the range as
+tab-separated rows under a one-line lead-in ("Here's what I pulled into a spreadsheet:"), with
+the dates and number formats the spreadsheet shows.
+
 ## Writing rules that follow
 
 1. No sentence whose only job is to sound like a person. If deleting it loses no fact, it was
